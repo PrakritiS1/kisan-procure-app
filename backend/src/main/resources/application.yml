@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/kisanprocure?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kolkata
+    username: root
+    password: Omkumar143@  # ← replace this with your real MySQL password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: change-this-secret-to-a-long-random-secret-at-least-32-bytes
+    expiration-minutes: 120
+  ai:
+    base-url: http://localhost:8000

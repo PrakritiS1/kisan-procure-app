@@ -1,0 +1,6 @@
+package com.kisanprocure.service;
+import com.kisanprocure.dto.payment.PaymentDtos.*; import com.kisanprocure.entity.*; import com.kisanprocure.entity.enums.PaymentStatus; import com.kisanprocure.exception.ApiException; import com.kisanprocure.repository.*; import lombok.RequiredArgsConstructor; import org.springframework.stereotype.Service; import java.util.*;
+@Service @RequiredArgsConstructor public class PaymentService { private final PaymentRepository payments; private final ProcurementRepository procurements;
+ public CreatePaymentResponse create(CreatePaymentRequest r){Procurement p=procurements.findById(r.procurementId()).orElseThrow(()->new ApiException(404,"Procurement not found")); String ref="TXN-KP-"+UUID.randomUUID().toString().substring(0,8).toUpperCase(); Payment x=payments.save(Payment.builder().procurement(p).amount(r.amount()).transactionRef(ref).status(PaymentStatus.INITIATED).build()); return new CreatePaymentResponse(true,x.getId(),ref,x.getStatus().name());}
+ public PaymentDetails get(Long id){Payment p=payments.findById(id).orElseThrow(()->new ApiException(404,"Payment not found")); Procurement x=p.getProcurement(); return new PaymentDetails(p.getId(),x.getId(),p.getAmount(),p.getTransactionRef(),p.getStatus().name(),x.getQuantity(),x.getRate(),x.getTotalAmount(),x.getStatus().name());}
+}

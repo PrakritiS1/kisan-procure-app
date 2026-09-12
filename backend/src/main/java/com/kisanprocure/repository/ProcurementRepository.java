@@ -1,0 +1,1 @@
+package com.kisanprocure.repository; import com.kisanprocure.entity.Procurement; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface ProcurementRepository extends JpaRepository<Procurement,Long>{ Optional<Procurement> findByBookingId(Long bookingId); }

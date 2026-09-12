@@ -1,0 +1,1 @@
+package com.kisanprocure.dto.notification; public final class NotificationDtos { private NotificationDtos(){} public record NotificationResponse(Long id,String title,String message,boolean isRead){} public record ReadRequest(boolean isRead){} }

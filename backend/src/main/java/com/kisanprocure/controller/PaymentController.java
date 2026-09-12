@@ -1,0 +1,3 @@
+package com.kisanprocure.controller;
+import com.kisanprocure.dto.payment.PaymentDtos.*; import com.kisanprocure.service.PaymentService; import jakarta.validation.Valid; import lombok.RequiredArgsConstructor; import org.springframework.web.bind.annotation.*;
+@RestController @RequestMapping("/api/payments") @RequiredArgsConstructor public class PaymentController { private final PaymentService s; @PostMapping public CreatePaymentResponse create(@Valid @RequestBody CreatePaymentRequest r){return s.create(r);} @GetMapping("/{id}") public PaymentDetails get(@PathVariable Long id){return s.get(id);} }

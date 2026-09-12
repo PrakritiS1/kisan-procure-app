@@ -1,0 +1,1 @@
+package com.kisanprocure.repository; import com.kisanprocure.entity.Farmer; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface FarmerRepository extends JpaRepository<Farmer,Long>{ Optional<Farmer> findByUserId(Long userId); }

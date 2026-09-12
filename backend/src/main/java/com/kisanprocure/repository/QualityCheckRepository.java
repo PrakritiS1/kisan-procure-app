@@ -1,0 +1,1 @@
+package com.kisanprocure.repository; import com.kisanprocure.entity.QualityCheck; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface QualityCheckRepository extends JpaRepository<QualityCheck,Long>{ Optional<QualityCheck> findByBookingId(Long bookingId); }

@@ -1,0 +1,1 @@
+package com.kisanprocure.repository; import com.kisanprocure.entity.Officer; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface OfficerRepository extends JpaRepository<Officer,Long>{ Optional<Officer> findByUserId(Long userId); }

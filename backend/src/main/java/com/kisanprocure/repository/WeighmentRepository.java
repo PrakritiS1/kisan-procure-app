@@ -1,0 +1,1 @@
+package com.kisanprocure.repository; import com.kisanprocure.entity.Weighment; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface WeighmentRepository extends JpaRepository<Weighment,Long>{ Optional<Weighment> findByBookingId(Long bookingId); }

@@ -1,0 +1,1 @@
+package com.kisanprocure.repository; import com.kisanprocure.entity.CentreCrop; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface CentreCropRepository extends JpaRepository<CentreCrop,Long>{ Optional<CentreCrop> findByCentreIdAndCropId(Long centreId,Long cropId); List<CentreCrop> findByCentreId(Long centreId); }

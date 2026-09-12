@@ -1,0 +1,6 @@
+package com.kisanprocure.controller;
+import com.kisanprocure.dto.notification.NotificationDtos.*; import com.kisanprocure.entity.Notification; import com.kisanprocure.repository.NotificationRepository; import jakarta.validation.Valid; import lombok.RequiredArgsConstructor; import org.springframework.security.core.Authentication; import org.springframework.web.bind.annotation.*; import java.util.*;
+@RestController @RequestMapping("/api/notifications") @RequiredArgsConstructor public class NotificationController { private final NotificationRepository repo;
+ @GetMapping public Map<String,Object> all(Authentication a){long uid=Long.parseLong(a.getName()); return Map.of("notifications",repo.findByUserIdOrderByIdDesc(uid).stream().map(n->new NotificationResponse(n.getId(),n.getTitle(),n.getMessage(),Boolean.TRUE.equals(n.getIsRead()))).toList());}
+ @PatchMapping("/{id}/read") public Map<String,Object> read(Authentication a,@PathVariable Long id,@Valid @RequestBody ReadRequest r){Notification n=repo.findByIdAndUserId(id,Long.parseLong(a.getName())).orElseThrow(()->new com.kisanprocure.exception.ApiException(404,"Notification not found"));n.setIsRead(r.isRead());repo.save(n);return Map.of("success",true,"message","Notification marked as read");}
+}

@@ -1,0 +1,1 @@
+package com.kisanprocure.repository; import com.kisanprocure.entity.Payment; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface PaymentRepository extends JpaRepository<Payment,Long>{ List<Payment> findByProcurementId(Long procurementId); }
